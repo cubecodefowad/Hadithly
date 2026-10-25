@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Nothing here needs a secret today; keep any future ones out of history.
+.env
+.env.*
+!.env.example
+
+static-preview.log
+.DS_Store
+Thumbs.db

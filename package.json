@@ -1,0 +1,31 @@
+{
+  "name": "hadithly",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hadithly — ten hadith collections in Arabic with every translation the hadith-api publishes.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "npm run data:validate",
+    "build": "next build",
+    "start": "node scripts/serve-static.mjs",
+    "preview": "node scripts/serve-static.mjs",
+    "lint": "tsc --noEmit",
+    "data:hadith": "node scripts/download-hadith-data.mjs",
+    "data:validate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate-hadith-data.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.545.0",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
+  }
+}

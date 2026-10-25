@@ -1,0 +1,1124 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ fonts */
+@font-face {
+  font-family: "Amiri Quran";
+  src: url("/fonts/amiri-quran-arabic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Amiri Quran";
+  src: url("/fonts/amiri-quran-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+FEFF;
+}
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/source-serif-4-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Noto Nastaliq Urdu";
+  src: url("/fonts/noto-nastaliq-urdu-arabic.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215;
+}
+
+/* ----------------------------------------------------------------- tokens */
+@theme inline {
+  --color-paper: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-line: var(--border);
+  --color-highlight: var(--highlight);
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-arabic: "Amiri Quran", "Scheherazade New", "Traditional Arabic", serif;
+  --font-urdu: "Noto Nastaliq Urdu", "Amiri Quran", serif;
+}
+
+:root {
+  --background: #faf8f3;
+  --surface: #ffffff;
+  --surface-muted: #f3efe6;
+  --text-primary: #252821;
+  --text-secondary: #666a61;
+  --accent: #426b55;
+  --accent-strong: #2f5440;
+  --border: #e7e3da;
+  --highlight: #eee7d8;
+  --shadow-color: 37 40 33;
+  /* Hadith gradings: the three tones a chip can take. */
+  --grade-sahih: #2c6242;
+  --grade-hasan: #7c5410;
+  --grade-weak: #8a3a32;
+  --grade-other: var(--text-secondary);
+  --arabic-size: 2.1rem;
+  --translation-size: 1.0625rem;
+  --header-height: 4rem;
+  --tw-hamzat_wasl: #7b4fa0;
+  --tw-madd_2: #1e5fa8;
+  --tw-madd_246: #176f73;
+  --tw-madd_6: #a32e3c;
+  --tw-madd_munfasil: #2e6b3e;
+  --tw-madd_muttasil: #7a4a1e;
+  --tw-ikhfa: #a14a22;
+  --tw-ikhfa_shafawi: #7a5b12;
+  --tw-ghunnah: #8b3a62;
+  --tw-idghaam_ghunnah: #4a6b1a;
+  --tw-idghaam_no_ghunnah: #3d6b52;
+  --tw-idghaam_shafawi: #3b5f82;
+  --tw-idghaam_mutajanisayn: #66508c;
+  --tw-idghaam_mutaqaribayn: #8a4f6b;
+  --tw-iqlab: #a63a5b;
+  --tw-qalqalah: #a3402e;
+  --tw-lam_shamsiyyah: #615846;
+  --tw-silent: #6b6e66;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #171916;
+  --surface: #20231f;
+  --surface-muted: #1c1f1b;
+  --text-primary: #f1eee6;
+  --text-secondary: #b1b4aa;
+  --accent: #a4c5a9;
+  --accent-strong: #c4dec7;
+  --border: #383c35;
+  --highlight: #2a2e28;
+  --shadow-color: 0 0 0;
+  --grade-sahih: #a8d0ae;
+  --grade-hasan: #e0c483;
+  --grade-weak: #eaa9a1;
+  --grade-other: var(--text-secondary);
+  --tw-hamzat_wasl: #c9a7f0;
+  --tw-madd_2: #8fb8ec;
+  --tw-madd_246: #79c9cc;
+  --tw-madd_6: #f08a96;
+  --tw-madd_munfasil: #8fcb9a;
+  --tw-madd_muttasil: #d6a66f;
+  --tw-ikhfa: #e8a47d;
+  --tw-ikhfa_shafawi: #d9c06e;
+  --tw-ghunnah: #e69ab8;
+  --tw-idghaam_ghunnah: #b5ce7a;
+  --tw-idghaam_no_ghunnah: #8fc7a8;
+  --tw-idghaam_shafawi: #9fbedc;
+  --tw-idghaam_mutajanisayn: #c3afe3;
+  --tw-idghaam_mutaqaribayn: #dfa2bf;
+  --tw-iqlab: #f093ac;
+  --tw-qalqalah: #f09884;
+  --tw-lam_shamsiyyah: #c0b49a;
+  --tw-silent: #a9aca3;
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------- mushaf designs */
+/* A design carries a complete palette for both brightnesses, so the reader's
+   light/dark choice survives while the paper, ink and gilding change. The same
+   attributes paint the picker swatches, which is why the selectors are not
+   scoped to `html`. */
+:root {
+  /* Plain inherits the ordinary border, so the verse rules are untouched. */
+  --frame-rule: var(--border);
+}
+
+[data-mushaf="madinah"] {
+  --background: #f6f4e8;
+  --surface: #fffdf4;
+  --surface-muted: #eeeade;
+  --text-primary: #1e2a22;
+  --text-secondary: #55604f;
+  --accent: #2c6242;
+  --accent-strong: #214b33;
+  --border: #e0dbc7;
+  --highlight: #eee5ca;
+  --frame-rule: #a9863f;
+  --shadow-color: 30 42 34;
+}
+
+html.dark[data-mushaf="madinah"],
+html.dark [data-mushaf="madinah"] {
+  --background: #121a15;
+  --surface: #1a231c;
+  --surface-muted: #17201a;
+  --text-primary: #eee9dc;
+  --text-secondary: #aeb6a6;
+  --accent: #a3cbaa;
+  --accent-strong: #c3dfc6;
+  --border: #2e3a31;
+  --highlight: #232e25;
+  --frame-rule: #c2a15c;
+  --shadow-color: 0 0 0;
+}
+
+[data-mushaf="andalus"] {
+  --background: #f7efe2;
+  --surface: #fdf8ee;
+  --surface-muted: #f0e5d3;
+  --text-primary: #2b211a;
+  --text-secondary: #695745;
+  --accent: #84452c;
+  --accent-strong: #67341f;
+  --border: #e5d6bf;
+  --highlight: #efdfc5;
+  --frame-rule: #9c6a3c;
+  --shadow-color: 43 32 25;
+}
+
+html.dark[data-mushaf="andalus"],
+html.dark [data-mushaf="andalus"] {
+  --background: #1a1410;
+  --surface: #231b15;
+  --surface-muted: #1e1712;
+  --text-primary: #f3e9db;
+  --text-secondary: #bfae98;
+  --accent: #e0a87e;
+  --accent-strong: #f0c5a2;
+  --border: #3a2e24;
+  --highlight: #292018;
+  --frame-rule: #c49a6a;
+  --shadow-color: 0 0 0;
+}
+
+[data-mushaf="ottoman"] {
+  --background: #f4f2ea;
+  --surface: #fdfcf7;
+  --surface-muted: #ebe8dd;
+  --text-primary: #1c2532;
+  --text-secondary: #56606f;
+  --accent: #2e4a79;
+  --accent-strong: #22375c;
+  --border: #dedacd;
+  --highlight: #e5e9f0;
+  --frame-rule: #a78843;
+  --shadow-color: 28 37 51;
+}
+
+html.dark[data-mushaf="ottoman"],
+html.dark [data-mushaf="ottoman"] {
+  --background: #131822;
+  --surface: #1b212c;
+  --surface-muted: #171d27;
+  --text-primary: #ecf0f6;
+  --text-secondary: #aeb7c7;
+  --accent: #a9c0e8;
+  --accent-strong: #c9d9f5;
+  --border: #2c3546;
+  --highlight: #222b39;
+  --frame-rule: #b99b59;
+  --shadow-color: 0 0 0;
+}
+
+/* ------------------------------------------------------------------- base */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 4.5rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+/* ------------------------------------------------------------- components */
+@layer components {
+  .font-arabic {
+    font-family: var(--font-arabic);
+  }
+
+  .font-urdu {
+    font-family: var(--font-urdu);
+  }
+
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  /* ------------------------------------------------------------------ mark */
+  /* One element rather than two <img> tags, so each visit downloads a single
+     variant. The dark rule swaps the asset when the theme class is present. */
+  .brand-mark {
+    display: inline-block;
+    background-image: url("/brand/mark-light.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .dark .brand-mark {
+    background-image: url("/brand/mark-dark.png");
+  }
+
+  .quran-text {
+    font-family: var(--font-arabic);
+    font-size: var(--arabic-size);
+    line-height: 2.15;
+    letter-spacing: 0;
+    word-spacing: 0.045em;
+    direction: rtl;
+    text-align: right;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "calt" 1;
+    font-synthesis: none;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .translation-text {
+    font-family: var(--font-serif);
+    font-size: var(--translation-size);
+    line-height: 1.78;
+    color: var(--text-secondary);
+  }
+
+  /* Right-to-left translations use the Quranic font's Arabic coverage but the
+     prose rhythm of a translation, not the tight leading of the ayah text. */
+  .translation-rtl {
+    font-family: var(--font-arabic);
+    line-height: 2.05;
+    text-align: right;
+  }
+
+  /* Urdu uses Nastaliq, which needs more vertical room than the Arabic naskh
+     face used for the commentary. */
+  .translation-urdu {
+    font-family: var(--font-urdu);
+    line-height: 2.9;
+    text-align: right;
+  }
+
+  .meta {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .paper-grain {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--text-primary) 4%, transparent) 1px,
+      transparent 0
+    );
+    background-size: 18px 18px;
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: color-mix(in srgb, var(--accent) 70%, var(--text-secondary));
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    height: 1px;
+    width: min(4.5rem, 16vw);
+    background: linear-gradient(to right, transparent, var(--border));
+  }
+
+  .ornament::after {
+    background: linear-gradient(to left, transparent, var(--border));
+  }
+
+  .ornament-diamond {
+    width: 0.375rem;
+    height: 0.375rem;
+    transform: rotate(45deg);
+    border: 1px solid currentColor;
+  }
+
+  .reader-column {
+    width: 100%;
+    max-width: 54rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.15rem, 5vw, 2.5rem);
+  }
+
+  .verse {
+    position: relative;
+    padding-block: clamp(1.6rem, 3.2vw, 2.35rem);
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: calc(var(--header-height) + 5rem);
+  }
+
+  .verse:last-child {
+    border-bottom: 0;
+  }
+
+  .verse:hover {
+    background: color-mix(in srgb, var(--highlight) 32%, transparent);
+  }
+
+  .verse[data-active="true"] .verse-number {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  .verse-actions {
+    opacity: 0;
+    transform: translateY(1px);
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  .verse:hover .verse-actions,
+  .verse:focus-within .verse-actions,
+  .verse-actions:focus-within {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .verse-number {
+    display: inline-flex;
+    min-width: 1.9rem;
+    height: 1.9rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-secondary);
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .tajweed-mark {
+    color: var(--rule-color);
+    text-decoration: underline dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.24em;
+    text-decoration-color: color-mix(in srgb, var(--rule-color) 55%, transparent);
+  }
+
+  .bismillah {
+    font-size: calc(var(--arabic-size) * 0.86);
+    line-height: 2.1;
+    text-align: center;
+  }
+
+  /* ------------------------------------------------------- mushaf page */
+  /* A bound-mushaf page: gold rule, a second hairline inside it, rosette
+     bosses at the corners and a medallion centred on the head and foot of the
+     frame. Everything is drawn in CSS and one small SVG rosette, so a design
+     costs no image request and recolours with its palette. */
+  .mushaf-frame {
+    position: relative;
+    margin-block: 1.75rem 1.9rem;
+    padding: clamp(1.6rem, 4vw, 2.6rem) clamp(0.85rem, 2.4vw, 1.9rem)
+      clamp(1.4rem, 3vw, 2.1rem);
+    border: 1px solid var(--frame-rule);
+    border-radius: 3px;
+    background-color: var(--surface);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--text-primary) 4%, transparent) 0.8px,
+      transparent 0
+    );
+    background-size: 17px 17px;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--background) 70%, transparent),
+      inset 0 0 56px color-mix(in srgb, var(--frame-rule) 7%, transparent);
+  }
+
+  .mushaf-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0.42rem;
+    border: 1px solid color-mix(in srgb, var(--frame-rule) 42%, transparent);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .mushaf-frame .verse {
+    border-bottom-color: color-mix(in srgb, var(--frame-rule) 22%, var(--border));
+  }
+
+  .mushaf-ornament {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    color: var(--frame-rule);
+    padding: 0.15rem;
+    border-radius: 999px;
+    background: var(--surface);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--frame-rule) 50%, transparent);
+  }
+
+  .mushaf-ornament > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mushaf-corner {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .mushaf-corner-tl {
+    top: 0.42rem;
+    left: 0.42rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .mushaf-corner-tr {
+    top: 0.42rem;
+    right: 0.42rem;
+    transform: translate(50%, -50%);
+  }
+
+  .mushaf-corner-bl {
+    bottom: 0.42rem;
+    left: 0.42rem;
+    transform: translate(-50%, 50%);
+  }
+
+  .mushaf-corner-br {
+    bottom: 0.42rem;
+    right: 0.42rem;
+    transform: translate(50%, 50%);
+  }
+
+  .mushaf-boss {
+    left: 50%;
+    width: 1.55rem;
+    height: 1.55rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .mushaf-boss-top {
+    top: 0;
+  }
+
+  .mushaf-boss-bottom {
+    top: 100%;
+  }
+
+  /* Picker preview: the palette and rules of the design at thumbnail size. */
+  .mushaf-swatch {
+    position: relative;
+    display: block;
+    height: 2.4rem;
+    overflow: hidden;
+    border: 1px solid var(--frame-rule);
+    border-radius: 2px;
+    background-color: var(--surface);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in srgb, var(--text-primary) 5%, transparent) 0.7px,
+      transparent 0
+    );
+    background-size: 9px 9px;
+  }
+
+  .mushaf-swatch::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid color-mix(in srgb, var(--frame-rule) 48%, transparent);
+  }
+
+  .mushaf-swatch::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.1875rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-left: -0.1875rem;
+    transform: rotate(45deg);
+    background: var(--frame-rule);
+  }
+
+  /* Plain means "the page as it is", so its preview shows the base palette
+     rather than borrowing the design that happens to be selected. */
+  .mushaf-swatch[data-mushaf="plain"] {
+    --surface: #faf8f3;
+    --border: #e7e3da;
+    --text-primary: #252821;
+    --text-secondary: #666a61;
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--text-secondary) 40%, transparent);
+  }
+
+  .dark .mushaf-swatch[data-mushaf="plain"] {
+    --surface: #171916;
+    --border: #383c35;
+    --text-primary: #f1eee6;
+    --text-secondary: #b1b4aa;
+  }
+
+  .mushaf-swatch[data-mushaf="plain"]::before,
+  .mushaf-swatch[data-mushaf="plain"]::after {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .mushaf-corner {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    .mushaf-boss {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .mushaf-frame {
+      padding-top: 1.35rem;
+    }
+  }
+
+  /* Plain keeps the unframed page. The wrapper stays in the static markup so a
+     stored design does not add elements at hydration and shift the text; the
+     same reset covers the first paint, before ThemeScript sets the attribute. */
+  html:not([data-mushaf]) .mushaf-frame,
+  html[data-mushaf="plain"] .mushaf-frame {
+    margin-block: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  html:not([data-mushaf]) .mushaf-frame::before,
+  html[data-mushaf="plain"] .mushaf-frame::before,
+  html:not([data-mushaf]) .mushaf-ornament,
+  html[data-mushaf="plain"] .mushaf-ornament {
+    display: none;
+  }
+
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    transition: color 140ms ease, background-color 140ms ease;
+  }
+
+  .icon-button:hover {
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--highlight) 85%, transparent);
+  }
+
+  .icon-button[aria-pressed="true"] {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: 0.5rem;
+    background: var(--accent);
+    color: var(--background);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background-color 140ms ease, transform 140ms ease;
+  }
+
+  .button-primary:hover {
+    background: var(--accent-strong);
+  }
+
+  .button-primary:active {
+    transform: translateY(1px);
+  }
+
+  .button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    color: var(--text-primary);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    transition: border-color 140ms ease, background-color 140ms ease;
+  }
+
+  .button-secondary:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+    background: var(--surface-muted);
+  }
+
+  .input {
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    padding: 0.6rem 0.9rem;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+  }
+
+  .input::placeholder {
+    color: color-mix(in srgb, var(--text-secondary) 80%, transparent);
+  }
+
+  .input:focus-visible {
+    outline-offset: 1px;
+  }
+
+  .segmented {
+    display: inline-flex;
+    gap: 0.125rem;
+    padding: 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-muted);
+  }
+
+  .segmented button {
+    padding: 0.35rem 0.7rem;
+    border-radius: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .segmented button[aria-pressed="true"] {
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: 0 1px 2px rgb(var(--shadow-color) / 0.08);
+  }
+
+  input[type="range"] {
+    accent-color: var(--accent);
+    width: 100%;
+  }
+
+  dialog.sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    width: 100%;
+    max-width: 32rem;
+    max-height: min(88vh, 52rem);
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 1rem 1rem 0 0;
+    background: var(--surface);
+    color: var(--text-primary);
+    box-shadow: 0 -20px 60px rgb(var(--shadow-color) / 0.18);
+    overflow: auto;
+  }
+
+  dialog.sheet::backdrop {
+    background: rgb(12 14 12 / 0.45);
+    backdrop-filter: blur(2px);
+  }
+
+  @media (min-width: 640px) {
+    dialog.sheet {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 1rem;
+      max-height: min(84vh, 46rem);
+    }
+  }
+
+  /* The translation picker is a sheet with a fixed header, search field and
+     its own scroll area, so the search stays reachable in a 68-entry list. */
+  dialog.translation-picker {
+    max-width: 34rem;
+    max-height: min(86vh, 46rem);
+    overflow: hidden;
+  }
+
+  dialog.translation-picker[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .picker-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .picker-list {
+    flex: 1 1 auto;
+    min-height: 8rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.25rem;
+    outline: none;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--text-secondary) 45%, transparent) transparent;
+  }
+
+  .picker-list::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .picker-list::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--text-secondary) 40%, transparent);
+  }
+
+  .picker-list:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+
+  .picker-group-label {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 0.6rem 0.6rem 0.35rem;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .picker-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .picker-option[data-active="true"],
+  .picker-option:hover {
+    background: var(--surface-muted);
+  }
+
+  .picker-option[aria-selected="true"],
+  .picker-option[aria-pressed="true"] {
+    color: var(--accent-strong);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .picker-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .settings-row:last-child {
+    border-bottom: 0;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .skip-link:focus {
+    top: 0.75rem;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--surface-muted) 25%,
+      color-mix(in srgb, var(--surface-muted) 55%, var(--border)) 50%,
+      var(--surface-muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.6s ease-in-out infinite;
+    border-radius: 0.375rem;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 320ms ease both;
+  }
+
+  .animate-soft-pulse {
+    animation: soft-pulse 1.4s ease-in-out infinite;
+  }
+
+  /* ------------------------------------------------------------- hadithly */
+  /* A hadith is not an ayah, so it gets its own measure: the Arabic keeps the
+     Quranic face but sits a little smaller and looser than the mushaf page. */
+  .hadith-article {
+    position: relative;
+    padding-block: clamp(1.4rem, 2.8vw, 2rem);
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: calc(var(--header-height) + 2.5rem);
+  }
+
+  .hadith-article:last-child {
+    border-bottom: 0;
+  }
+
+  .hadith-article:hover {
+    background: color-mix(in srgb, var(--highlight) 26%, transparent);
+  }
+
+  .hadith-arabic {
+    font-family: var(--font-arabic);
+    font-size: calc(var(--arabic-size) * 0.82);
+    line-height: 2.05;
+    direction: rtl;
+    text-align: right;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "calt" 1;
+    overflow-wrap: break-word;
+    color: var(--text-primary);
+  }
+
+  .hadith-actions {
+    opacity: 0;
+    transition: opacity 160ms ease;
+  }
+
+  .hadith-article:hover .hadith-actions,
+  .hadith-article:focus-within .hadith-actions,
+  .hadith-actions:focus-within {
+    opacity: 1;
+  }
+
+  .grade-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.16rem 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--grade-tone) 40%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--grade-tone) 8%, transparent);
+    font-size: 0.625rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    color: var(--grade-tone);
+  }
+
+  .grade-chip[data-tone="sahih"] {
+    --grade-tone: var(--grade-sahih);
+  }
+
+  .grade-chip[data-tone="hasan"] {
+    --grade-tone: var(--grade-hasan);
+  }
+
+  .grade-chip[data-tone="weak"] {
+    --grade-tone: var(--grade-weak);
+  }
+
+  .grade-chip[data-tone="other"] {
+    --grade-tone: var(--grade-other);
+  }
+
+  /* Weight rather than opacity separates the verdict from its author: a
+     translucent 10px label drops under 4.5:1 on the tinted chip. */
+  .grade-chip-value {
+    font-weight: 600;
+  }
+
+  .grade-chip-scholar {
+    font-weight: 400;
+  }
+
+  .collection-card {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    padding: 1.25rem;
+    transition: border-color 160ms ease, background-color 160ms ease;
+  }
+
+  .collection-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  @media (hover: none) {
+    .verse-actions {
+      opacity: 1;
+      transform: none;
+    }
+    .hadith-actions {
+      opacity: 1;
+    }
+    .hadith-article:hover {
+      background: transparent;
+    }
+    .verse:hover {
+      background: transparent;
+    }
+  }
+
+  @media print {
+    .site-header,
+    .reader-toolbar,
+    .verse-actions,
+    .hadith-actions,
+    .audio-bar,
+    .site-footer {
+      display: none !important;
+    }
+    body {
+      background: #fff;
+      color: #000;
+    }
+    .quran-text,
+    .translation-text {
+      color: #000;
+    }
+    .verse {
+      break-inside: avoid;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
